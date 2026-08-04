@@ -54,5 +54,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/gpio-keys.kl
 
+# Init
+# Replaces edo.mk's libinit_sm8250: same LTALabel detection, but on the device
+# side so the japanese SKUs can get their stock build identity back.
+SONY_VENDOR_INIT_LIB := //$(LOCAL_PATH):libinit_pdx206
+
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += \
+    $(LOCAL_PATH)
+
 # Inherit from vendor blobs
 $(call inherit-product, vendor/sony/pdx206/pdx206-vendor.mk)

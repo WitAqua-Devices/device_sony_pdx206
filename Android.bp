@@ -1,0 +1,11 @@
+//
+// Copyright (C) 2026 The WitAqua Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+soong_namespace {
+    // libinit_pdx206 builds on the LTALabel detection in sm8250-common.
+    imports: [
+        "device/sony/sm8250-common",
+    ],
+}
