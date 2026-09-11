@@ -635,6 +635,42 @@ vendor/lib64/camera/com.sony.sensormodule.cervin_s5k3t2.bin
 # Charger
 vendor/etc/chg-pwr-service.cfg
 
+# FeliCa (SO-52A)
+# Every pdx206 SKU shares one build, so each model's set ships under its own
+# name and init.sony.rc binds the matching one over the canonical path.
+# common.cfg carries the carrier code and the model string, mfm.cfg a
+# certificate FeliCa Networks signed per model, so a set only works whole -
+# the chip answers to the one it was formatted against. mfs.cfg is identical
+# on all four but has to be in every set because the whole directory is bound.
+#
+# The canonical set is docomo's, which is why SO-52A has no copy of its own.
+# The name differs from sm8250-common's section on purpose: that one carries
+# the apks, and a shared name would drag them into every one of these runs.
+#   ./extract-files.py -n -s 'FeliCa (SO-52A)' <ROM/SO52A/extracted>
+vendor/etc/felica/common.cfg
+vendor/etc/felica/mfm.cfg
+vendor/etc/felica/mfs.cfg
+
+# FeliCa (SOG02)
+#   ./extract-files.py -n -s 'FeliCa (SOG02)' <ROM/SOG02/extracted>
+vendor/etc/felica/common.cfg:vendor/etc/felica_SOG02/common.cfg
+vendor/etc/felica/mfm.cfg:vendor/etc/felica_SOG02/mfm.cfg
+vendor/etc/felica/mfs.cfg:vendor/etc/felica_SOG02/mfs.cfg
+
+# FeliCa (A002SO)
+# The SoftBank firmware predates the move to /vendor and keeps these in
+# /system/etc/felica, so the dump has to be normalised before extracting.
+#   ./extract-files.py -n -s 'FeliCa (A002SO)' <ROM/A002SO/extracted>
+vendor/etc/felica/common.cfg:vendor/etc/felica_A002SO/common.cfg
+vendor/etc/felica/mfm.cfg:vendor/etc/felica_A002SO/mfm.cfg
+vendor/etc/felica/mfs.cfg:vendor/etc/felica_A002SO/mfs.cfg
+
+# FeliCa (XQ-AS42)
+#   ./extract-files.py -n -s 'FeliCa (XQ-AS42)' <ROM/XQAS42/extracted>
+vendor/etc/felica/common.cfg:vendor/etc/felica_XQ-AS42/common.cfg
+vendor/etc/felica/mfm.cfg:vendor/etc/felica_XQ-AS42/mfm.cfg
+vendor/etc/felica/mfs.cfg:vendor/etc/felica_XQ-AS42/mfs.cfg
+
 # Display calibration data
 vendor/etc/qdcm_calib_data_1.xml
 
